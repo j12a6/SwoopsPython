@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1 class="title text-white">{% block title %}Search{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<table>
+    <tr>
+        <th>Number</th>
+        <th>Prospect</th>
+        <th>Season</th>
+        <th>Position</th>
+        {% for key in players[0].skills.keys() %}
+        <th>{{ key }}</th>
+        {% endfor %}
+    </tr>
+    {% for player in players %}
+    <tr>
+        {% for value in [player.number, player.prospect, player.season, player.position] %}
+        <td class="pl-4">{{ value }}</td>
+        {% endfor %}
+        {% for skill_name, skill in player.skills.items() %}
+        <td style="background-color: {{ skill.background_color }}">
+            <div class="flex flex-row items-center justify-evenly">
+                <div class="flex flex-none flex-col items-center">
+                    <div class="flex-auto flex items-center ">
+                        {% if skill.revealed %}
+                        {{ skill.score }}
+                        {% else %}
+                        <div class="flex flex-col flex-auto items-center">
+                            <div class="flex flex-auto items-center text-[0.8rem]">
+                                {{ skill.max_score }}
+                            </div>
+                            <div class="flex flex-auto items-center text-[0.8rem]">
+                                {{ skill.min_score }}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% if skill.rank.value < 4 %}
+                    <div class="w-full h-1 flex-auto rounded-sm rank{{skill.rank.value}}"></div>
+                    {% endif %}
+                </div>
+                {% if skill.revealed %}
+                <div class="w-2.5 h-2.5 bg-white rounded-xl"></div>
+                <!--                    <img id="w-3.5 h-3.5 bg-white" src="./../../static/images/visible_icon.png">-->
+                {% else %}
+                <!--                    <div class="w-2.5 h-2.5 bg-transparent"></div>-->
+                {% endif %}
+            </div>
+        </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

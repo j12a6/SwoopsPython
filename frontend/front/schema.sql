@@ -1,0 +1,5 @@
+
+CREATE TABLE players (
+  id INTEGER PRIMARY KEY,
+  player BLOB NOT NULL
+);

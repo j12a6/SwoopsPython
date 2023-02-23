@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+    html {
+        @apply bg-zinc-800
+    }
+
+    table {
+        @apply bg-swoops-blue1 text-sky-100 rounded-xl
+    }
+
+    th {
+        @apply w-[4.5rem] h-6 bg-white p-2 text-swoops-blue1 border-x border-x-swoops-blue1 border-dashed first:border-l-0 last:border-r-0 rounded-l
+    }
+
+    td {
+        @apply w-[4.5rem] bg-swoops-blue1 border-x border-x-sky-100/20 border-y border-y-white p-1 first:border-l-0 last:border-r-0 rounded-2xl
+    }
+}

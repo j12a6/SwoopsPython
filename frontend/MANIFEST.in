@@ -1,0 +1,4 @@
+include front/schema.sql
+graft front/static
+graft front/templates
+global-exclude *.pyc
